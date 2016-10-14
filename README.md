@@ -66,18 +66,3 @@ Follow these steps to ensure your plugin gets built into the runtime folder:
    
    ```ant runtime```
    
-
-
-##Running Tests
-To test the plugin, open a terminal and navigate to the ``NUTCH_ROOT/runtime/local`` directory. 
-
-Run the following command:
-
-```
- sudo bin/nutch indexchecker http://domain.com/Nutch-UrlNormalizer-Advanced?PlugIN=1
-```
-The result output of the URL should be:
-
-```
- http://domain.com/nutch-urlnormalizer-advanced?plugin=1
-```
