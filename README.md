@@ -8,7 +8,24 @@ All 3 of the above pages will indexed to your external datastore because of a di
 The URL Normalizer Advanced plugin converts the URL ``path`` and the ``key`` to lowercase reducing the chances of duplicate entries getting indexed to your external data store.
 
 ##Usage
+Include the ``urlnormalizer-advanced`` plugin in the ``plugin.includes`` property and specify the class after ``org.apache.nutch.net.urlnormalizer.basic.BasicURLNormalizer`` in the ``urlnormalizer.order`` property.
 
+```
+<property>
+    <name>plugin.includes</name>
+    <value>urlnormalizer-(pass|basic|regex|advanced)</value>
+</property>
+
+<property>
+  <name>urlnormalizer.order</name>
+  <value>org.apache.nutch.net.urlnormalizer.basic.BasicURLNormalizer saintybalboa.nutch.net.AdvancedURLNormalizer org.apache.nutch.net.urlnormalizer.regex.RegexURLNormalizer</value>
+  <description>Order in which normalizers will run. If any of these isn't
+  activated it will be silently skipped. If other normalizers not on the
+  list are activated, they will run in random order after the ones
+  specified here are run.
+  </description>
+</property>
+```
 
 ##How To Build
 
@@ -23,15 +40,15 @@ Follow these steps to ensure your plugin gets built into the runtime folder:
 2. Open ``NUTCH_ROOT/src/plugin/build.xml`` and add the following children to the associated target elements:  
     ```
         <target name="deploy">
-            <ant dir="metarobots" target="deploy"/>
+            <ant dir="urlnormalizer-advanced" target="deploy"/>
         </target>
         
         <target name="test">
-            <ant dir="metarobots" target="test"/>
+            <ant dir="urlnormalizer-advanced" target="test"/>
         </target>
         
         <target name="clean">
-            <ant dir="metarobots" target="clean"/>
+            <ant dir="urlnormalizer-advanced" target="clean"/>
         </target>
     ```
 
@@ -45,8 +62,6 @@ Follow these steps to ensure your plugin gets built into the runtime folder:
    
 
 
-
-
 ##Running Tests
 To test the plugin, open a terminal and navigate to the ``NUTCH_ROOT/runtime/local`` directory. 
 
@@ -55,4 +70,8 @@ Run the following command:
 ```
  sudo bin/nutch indexchecker http://domain.com/Nutch-UrlNormalizer-Advanced?PlugIN=1
 ```
-The result output of the URL should be ``http://domain.com/nutch-urlnormalizer-advanced?plugin=1``.
+The result output of the URL should be:
+
+```
+ http://domain.com/nutch-urlnormalizer-advanced?plugin=1
+```
