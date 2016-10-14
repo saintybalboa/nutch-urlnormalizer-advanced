@@ -1,8 +1,8 @@
 # Apache Nutch 2.3.* - Advanced URL Normalizer - Plugin
 A plugin developed for Apache Nutch 2.3.* to further normalize honour URLs to reducing duplicate entries at index. Apache Nutch 2.3.* URL normalizer plugins do NOT lower the case on the URL paths and query parameters. This means that there's chance nutch will index duplicate entries if it crawls the same URL present in different case. For example:
-``http://mydomain.com/hello?name=2`` 
-``http://mydomain.com/hElLo?name=2`` 
-``http://mydomain.com/hElLo?nAMe=2`` 
+```http://mydomain.com/hello?name=2```
+```http://mydomain.com/hElLo?name=2``` 
+```http://mydomain.com/hElLo?nAMe=2``` 
 All 3 of the above pages will indexed to your external datastore because of a difference in case.
 
 The URL Normalizer Advanced plugin converts the URL ``path`` and the ``key`` to lowercase reducing the chances of duplicate entries getting indexed to your external data store.
